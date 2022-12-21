@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+
+{% block meta_title %}
+<title>All Finches</title>
+{% endblock meta_title %}
+
+
+{% block body %}
+<div class="py-5">
+  <h1 class="display-1 mb-5">Look at all these finchs.</h1>
+
+  {% for finch in finchs %}
+  <div class="card p-3 mb-3 text-dark">
+    <div class="card-body">
+      <h3 class="card-title mb-2">
+        {{ finch.name }}
+      </h3>
+      <hr>
+      <p>
+        <strong>Color:</strong> {{finch.color}}
+      </p>
+      <p>
+        <strong>Description:</strong> {{finch.description}}
+      </p>
+      <p>
+        <strong>Age: </strong>
+
+        {% if finch.age < 1 %}
+
+        Not yet hatched
+
+        {% else %}
+        {{finch.age}}
+
+        {% endif %}
+
+      </p>
+    </div>
+  </div>
+  {% endfor %}
+
+</div>
+{% endblock body %}

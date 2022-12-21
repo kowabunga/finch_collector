@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{% block meta_title %}
+<title>Home</title>
+{% endblock meta_title %}
+
+
+{% block body %}
+<div class="p-5 mb-4 bg-light rounded text-black mt-5">
+  <div class="container-fluid py-5">
+    <div class="row mb-5">
+      <div class="col-md-5 d-flex align-items-center justify-content-center">
+        <h1 class="pb-5 display-1">
+          Finch.
+        </h1>
+      </div>
+      <div class="d-none d-md-block col-md-7">
+        <img src="https://cdn.download.ams.birds.cornell.edu/api/v1/asset/306327341/1800" class="img-fluid w-100 rounded">
+      </div>
+    </div>
+    <hr>
+    <p class="lead mt-5">Here we only see the beautiful finch.</p>
+    <p>Here we show the most beautiful finches around the world. Feel free to take a look.</p>
+  </div>
+</div>
+{% endblock body %}
