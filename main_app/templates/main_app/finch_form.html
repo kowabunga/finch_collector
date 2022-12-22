@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+{% if object %}
+<h1>Edit <span class="teal-text">{{object.name}}</span></h1>
+{%else%}
+<h1>Add Cat</h1>
+{% endif %}
+<!-- leaving the action blank makes the form submit to the same url used
+to display the form -->
+{% load crispy_forms_tags %}
+<form action="" method="post">
+  <!-- all django forms need a cross site request forgery token  see-surf -->
+  {% csrf_token %}
+  <table>
+    {{ form|crispy}}
+  </table>
+  <input type="submit" value="Submit!" class="btn btn-dark">
+</form>
+
+{% endblock body %}
