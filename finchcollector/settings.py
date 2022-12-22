@@ -77,7 +77,7 @@ WSGI_APPLICATION = "finchcollector.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "catcollectors",
+        "NAME": "finchcollectors",
         "USER": "anthony",
         "PASSWORD": "k3R8E_+?",
     }

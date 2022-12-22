@@ -1,27 +1,5 @@
 from django.shortcuts import render
-
-# THIS IS SIMULATING A MODEL, JUST FOR TODAY,
-# SO WE HAVE DATA TO INJECT INTO OUR TEMPLATES
-class Finch:  # Note that parens are optional if not inheriting from another class
-    def __init__(self, name, color, description, age):
-        self.name = name
-        self.color = color
-        self.description = description
-        self.age = age
-
-
-# This the array, we are injecting into the template
-finchs = [
-    Finch("Lolo", "purple", "looks like flappy bird", 3),
-    Finch("Sachi", "orange", "lazy stupid bird", 0),
-    Finch("Raven", "green", "normal i think?", 4),
-]
-
-
-# After this lesson this code will not be used
-# because we'll use a REAL MODEL that can talk
-# to the DB
-##############################################
+from .models import Finch
 
 
 def home(request):
@@ -33,4 +11,10 @@ def about(request):
 
 
 def all_finches(request):
+    finchs = Finch.objects.all()
     return render(request, "finchs/index.html", {"finchs": finchs})
+
+
+def finch_details(request, finch_id):
+    finch = Finch.objects.get(id=finch_id)
+    return render(request, "finchs/details.html", {"finch": finch})

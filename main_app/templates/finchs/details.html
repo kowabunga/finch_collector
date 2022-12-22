@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<div class="card p-3 mt-3 text-dark">
+  <div class="card-body">
+    <h3 class="card-title mb-2">
+      {{ finch.name }}
+    </h3>
+    <hr>
+    <p>
+      <strong>Color:</strong> {{finch.color}}
+    </p>
+    <p>
+      <strong>Description:</strong> {{finch.description}}
+    </p>
+    <p>
+      <strong>Age: </strong>
+
+      {% if finch.age < 1 %}
+
+      Not yet hatched
+
+      {% else %}
+      {{finch.age}}
+
+      {% endif %}
+
+    </p>
+  </div>
+</div>
+{% endblock body %}
