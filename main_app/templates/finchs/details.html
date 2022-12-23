@@ -27,8 +27,41 @@
       {% endif %}
 
     </p>
+    <a href="{% url 'finchs_update' finch.id %}">Edit</a>
+    <a href="{% url 'finchs_delete' finch.id %}">Delete</a>
+    {% if finch.age > 0 %}
+    <hr>
+    <h4>Add Food Requirement</h4>
+    <form action="{% url 'add_foodtype' finch.id %}" method="POST">
+      {%csrf_token%}
+      {{food_form.as_p}}
+      <input type="submit" value="Add Food Type" class="btn btn-outline-dark mb-3">
+    </form>
+    <h4>Food Requirements</h4>
+    <table class="table">
+      <thead>
+        <th>Type</th>
+        <th>Amount</th>
+      </thead>
+      <tbody>
+        {% for foodtype in finch.foodtype_set.all %}
+
+        <tr>
+          <td>
+            {{foodtype.get_type_display}}
+          </td>
+          <td>
+            {{foodtype.get_amounts_display}}
+          </td>
+        </tr>
+
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
   </div>
-  <a href="{% url 'finchs_update' finch.id %}">Edit</a>
-  <a href="{% url 'finchs_delete' finch.id %}">Delete</a>
 </div>
+<script>
+  document.querySelectorAll("select").forEach(select => select.classList.add('form-select'))
+</script>
 {% endblock body %}

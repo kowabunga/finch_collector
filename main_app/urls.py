@@ -9,4 +9,5 @@ urlpatterns = [
     path("finchs/create/", views.CreateFinch.as_view(), name="finchs_create"),
     path("finchs/<int:pk>/update/", views.UpdateFinch.as_view(), name="finchs_update"),
     path("finchs/<int:pk>/delete/", views.DeleteFinch.as_view(), name="finchs_delete"),
+    path("finchs/<int:finch_id>/add_foodtype", views.add_foodtype, name="add_foodtype"),
 ]

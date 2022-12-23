@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from .forms import FoodTypeForm
 
 from .models import Finch
 
@@ -34,4 +35,19 @@ def all_finches(request):
 
 def finch_details(request, finch_id):
     finch = Finch.objects.get(id=finch_id)
-    return render(request, "finchs/details.html", {"finch": finch})
+
+    food_form = FoodTypeForm
+
+    return render(request, "finchs/details.html", {"finch": finch, "food_form": food_form})
+
+
+def add_foodtype(request, finch_id):
+    form = FoodTypeForm(request.POST)
+
+    if form.is_valid():
+        new_food = form.save(commit=False)
+
+        new_food.finch_id = finch_id
+        new_food.save()
+
+        return redirect("details", finch_id=finch_id)
