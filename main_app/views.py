@@ -50,4 +50,4 @@ def add_foodtype(request, finch_id):
         new_food.finch_id = finch_id
         new_food.save()
 
-        return redirect("details", finch_id=finch_id)
+    return redirect("details", finch_id=finch_id)
