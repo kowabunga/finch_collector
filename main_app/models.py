@@ -18,7 +18,7 @@ class Toy(models.Model):
 class Finch(models.Model):
     name = models.CharField(max_length=100)
     color = models.CharField(max_length=100)
-    description = models.TextField(200)
+    description = models.TextField()
     age = models.IntegerField()
 
     toys = models.ManyToManyField(Toy)
