@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<h1>Toy List</h1>
+
+{% for toy in toy_list %}
+<a href="{% url 'toys_details' toy.id %}" class="text-decoration-none">
+  <div class="card text-dark mb-3">
+    <div class="card-body">
+      <h4 class="card-title">
+        {{ toy.name }}
+      </h4>
+      <p>Funness:
+        {{ toy.funness_scale }}/10
+      </p>
+    </div>
+  </div>
+</a>
+{% endfor %}
+
+{% endblock body %}

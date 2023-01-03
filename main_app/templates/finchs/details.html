@@ -45,7 +45,6 @@
       </thead>
       <tbody>
         {% for foodtype in finch.foodtype_set.all %}
-
         <tr>
           <td>
             {{foodtype.get_type_display}}
@@ -54,11 +53,69 @@
             {{foodtype.get_amounts_display}}
           </td>
         </tr>
-
         {% endfor %}
       </tbody>
     </table>
     {% endif %}
+  </div>
+</div>
+<div class="row mb-3">
+  <div class="col">
+    <div class="card p-3 mt-3 text-dark">
+      <div class="card-body">
+        <h4 class="card-title">{{finch.name}}'s Toys and Likeability</h4>
+        {% if finch.toys.count %}
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Toy</th>
+              <th>Likeability</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for toy in finch.toys.all %}
+            <tr>
+              <td>{{toy.name}}</td>
+              <td>{{toy.funness_scale}}/10</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+        No toys... :/
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card p-3 mt-3 text-dark">
+      <div class="card-body">
+        <h4 class="card-title">New Toys for {{finch.name}}</h4>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Toy</th>
+              <th>Likeability</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for toy in toys %}
+            <tr class="align-middle">
+              <td>{{toy.name}}</td>
+              <td>{{toy.funness_scale}}/10</td>
+              <td>
+                <form action="{% url 'assoc_toy' finch.id toy.id %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-outline-dark w-100">Add</button>
+                </form>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
 <script>

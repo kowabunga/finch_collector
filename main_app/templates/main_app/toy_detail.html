@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<h1>Toy Details</h1>
+
+<div class="row">
+  <div class="col">
+    <div class="card p-3 text-dark">
+      <div class="card-content">
+        <h4 class="card-title">
+          {{ toy.name }}
+        </h4>
+        <p>Funness
+          {{ toy.funness_scale }}/10
+        </p>
+      </div>
+      <div class="card-action">
+        <a href="{% url 'toys_update' toy.id %}">Edit</a>
+        <a href="{% url 'toys_delete' toy.id %}">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock body %}

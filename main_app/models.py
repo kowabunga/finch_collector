@@ -2,11 +2,29 @@ from django.db import models
 from django.urls import reverse
 
 # Create your models here.
+
+
+class Toy(models.Model):
+    name = models.CharField(max_length=50)
+    funness_scale = models.IntegerField()
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("toys_details", kwargs={"pk": self.id})
+
+
 class Finch(models.Model):
     name = models.CharField(max_length=100)
     color = models.CharField(max_length=100)
     description = models.TextField(200)
     age = models.IntegerField()
+
+    toys = models.ManyToManyField(Toy)
+
+    def __str__(self):
+        return self.name
 
     def get_absolute_url(self):
         # first arg is name of a url
